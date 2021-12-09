@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_const_constructors, deprecated_member_use, prefer_const_literals_to_create_immutables
 
-import 'package:flutter/material.dart';
+/*import 'package:flutter/material.dart';
 
 class PublishPage extends StatefulWidget {
   const PublishPage({Key? key}) : super(key: key);
@@ -19,12 +19,27 @@ class _PublishPageState extends State<PublishPage> {
         height: MediaQuery.of(context).size.height,
         child: Column(
           children: [
-            Row(
-              children: [
-                DropdownButton(items: []),
-                TextField(),
-              ],
+            SizedBox(
+              width: MediaQuery.of(context).size.width,
+              child: Row(
+                children: [
+                  Expanded(
+                    flex: 1,
+                    child: DropdownButton(
+                      items: [
+                        DropDownMenuItem(
+                          child: Text('bla'),
+                        ),
+                        DropDownMenuItem(
+                          child: Text('bla'),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
+            SizedBox(height: 50),
             RaisedButton(
               onPressed: () {},
               child: Text('qualquer coisa'),
@@ -33,7 +48,7 @@ class _PublishPageState extends State<PublishPage> {
         ),
       ),
 
-      /*ListView(
+      ListView(
         padding: const EdgeInsets.all(8),
         children: [
           Container(
@@ -47,7 +62,7 @@ class _PublishPageState extends State<PublishPage> {
             ),
           ),
         ],
-      ),*/
+      ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 1,
         items: [
@@ -70,4 +85,4 @@ class _PublishPageState extends State<PublishPage> {
       ),
     );
   }
-}
+}*/
