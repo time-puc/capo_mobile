@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -11,19 +13,17 @@ class CardAdvertise extends StatelessWidget {
   CardAdvertise(String this.model, String this.condition, String this.price,
       String this.location);
 
-  // Image.asset("assets/images/NotFound.jpge"),
-
-  Future<List<CardAdvertise>> requsicaoBanco(String url) async {
+  Future<List<CardAdvertise>> loadData(String url) async {
     List data = [];
     List<CardAdvertise> advertises = [];
 
     try {
       final response = await http.get(Uri.parse(url));
       data = jsonDecode(response.body);
-      data.forEach((element) {
+      for (var element in data) {
         advertises.add(CardAdvertise(element['modelo'], element['condicao'],
             element['preco'], element['estado']));
-      });
+      }
       return advertises;
     } catch (error) {
       throw Exception(error);
