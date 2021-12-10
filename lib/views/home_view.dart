@@ -40,44 +40,70 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //AppBar
       appBar: AppBar(
         title: Padding(
           padding: const EdgeInsets.all(100.0),
           child: Image.asset("assets/images/Logo.png"),
         ),
       ),
-      body: ListView(
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Container(
-                height: MediaQuery.of(context).size.height * 0.3,
-                width: MediaQuery.of(context).size.width,
-                child: CarousellSlider(
-                    ["assets/brands/Chevrolet.png", "assets/brands/Fiat.png"],
-                    double.infinity * 0.80,
-                    100,
-                    100,
-                    230,
-                    230,
-                    230),
+      //Body
+      body: Container(
+        child: Column(
+          children: [
+            // Title - Marcas
+            Container(
+              decoration: BoxDecoration(
+                border:
+                    Border.all(width: 10, color: Color.fromARGB(0, 0, 0, 0)),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(30.0),
+                ),
               ),
-            ],
-          ),
-          Container(
-            height: MediaQuery.of(context).size.height * 0.7,
-            width: MediaQuery.of(context).size.width,
-            child: ListView.builder(
-                itemCount: lista_anuncios.length,
-                itemBuilder: (BuildContext ctxt, int index) {
-                  return lista_anuncios[index];
-                }),
-          ),
-        ],
+              alignment: Alignment.centerLeft,
+              height: 60,
+              child: Text(
+                "Marcas",
+                style: TextStyle(
+                    color: Colors.blue,
+                    fontSize: 30.0,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+            // Slider
+            Container(
+              child: CarousellSlider([
+                Image.asset("assets/brands/Chevrolet.png"),
+                Image.asset("assets/brands/Fiat.png"),
+                Image.asset("assets/brands/Ford.png"),
+                Image.asset("assets/brands/Volkswagen.png"),
+                Image.asset("assets/brands/Rolls-Royce.png"),
+              ], MediaQuery.of(context).size.width * 0.80, 150, 20, 100, 230,
+                  230, 230),
+            ),
+            // Title - Anúncios recentes
+            Container(
+              decoration: BoxDecoration(
+                border:
+                    Border.all(width: 10, color: Color.fromARGB(0, 0, 0, 0)),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(30.0),
+                ),
+              ),
+              alignment: Alignment.centerLeft,
+              height: 60,
+              child: Text(
+                "Anúncios recentes",
+                style: TextStyle(
+                    color: Colors.blue,
+                    fontSize: 30.0,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+          ],
+        ),
       ),
+      //NavBar
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 0,
         items: [
