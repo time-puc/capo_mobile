@@ -36,7 +36,7 @@ class CardAdvertise extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Container(
         width: MediaQuery.of(context).size.width,
-        height: 110,
+        height: 100,
         color: Color.fromRGBO(220, 220, 220, 0.7),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -45,12 +45,15 @@ class CardAdvertise extends StatelessWidget {
               width: 120,
               height: 105,
               decoration: BoxDecoration(
-                  color: Colors.blue,
-                  border: Border.all(width: 1.0),
+                  border:
+                      Border.all(width: 1.0, color: Color.fromARGB(0, 0, 0, 0)),
                   borderRadius: BorderRadius.all(
                     Radius.circular(15.0),
                   )),
-              child: Image.asset("assets/images/NotFound.png"),
+              child: FittedBox(
+                fit: BoxFit.fill,
+                child: Image.asset("assets/images/NotFound.png"),
+              ),
             ),
             Container(
               padding: EdgeInsets.only(left: 10.0),
@@ -64,7 +67,7 @@ class CardAdvertise extends StatelessWidget {
                     child: Text(
                       model,
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 18,
                       ),
                     ),
                   ),
@@ -75,7 +78,7 @@ class CardAdvertise extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                      padding: const EdgeInsets.only(top: 8.0, bottom: 10),
+                      padding: const EdgeInsets.only(top: 8.0, bottom: 5),
                       child: Text(
                         'R\$: ' + price + ',00',
                         style: TextStyle(
@@ -87,6 +90,7 @@ class CardAdvertise extends StatelessWidget {
                     children: [
                       Icon(
                         Icons.add_location,
+                        color: Colors.blue,
                         size: 17,
                       ),
                       Text(location)

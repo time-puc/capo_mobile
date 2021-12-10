@@ -24,79 +24,83 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       //Body
-      body: Container(
-        child: Column(
-          children: [
-            // Title - Marcas
-            Container(
-              decoration: BoxDecoration(
-                border:
-                    Border.all(width: 10, color: Color.fromARGB(0, 0, 0, 0)),
-                borderRadius: BorderRadius.all(
-                  Radius.circular(30.0),
+      body: ListView(
+        children: [
+          Container(
+            child: Column(
+              children: [
+                // Title - Marcas
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                        width: 10, color: Color.fromARGB(0, 0, 0, 0)),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(30.0),
+                    ),
+                  ),
+                  alignment: Alignment.centerLeft,
+                  height: MediaQuery.of(context).size.height * 0.1,
+                  child: Text(
+                    "Principais Marcas",
+                    style: TextStyle(
+                        color: Colors.blue,
+                        fontSize: 30.0,
+                        fontWeight: FontWeight.bold),
+                  ),
                 ),
-              ),
-              alignment: Alignment.centerLeft,
-              height: 60,
-              child: Text(
-                "Marcas",
-                style: TextStyle(
-                    color: Colors.blue,
-                    fontSize: 30.0,
-                    fontWeight: FontWeight.bold),
-              ),
-            ),
-            // Slider
-            Container(
-              child: CarousellSlider([
-                Image.asset("assets/brands/Chevrolet.png"),
-                Image.asset("assets/brands/Fiat.png"),
-                Image.asset("assets/brands/Ford.png"),
-                Image.asset("assets/brands/Volkswagen.png"),
-                Image.asset("assets/brands/Rolls-Royce.png"),
-              ], MediaQuery.of(context).size.width * 0.80, 150, 20, 100, 230,
-                  230, 230),
-            ),
-            // Title - Anúncios recentes
-            Container(
-              decoration: BoxDecoration(
-                border:
-                    Border.all(width: 10, color: Color.fromARGB(0, 0, 0, 0)),
-                borderRadius: BorderRadius.all(
-                  Radius.circular(30.0),
+                // Slider
+                Container(
+                  child: CarousellSlider([
+                    Image.asset("assets/brands/Chevrolet.png"),
+                    Image.asset("assets/brands/Fiat.png"),
+                    Image.asset("assets/brands/Ford.png"),
+                    Image.asset("assets/brands/Volkswagen.png"),
+                    Image.asset("assets/brands/Rolls-Royce.png"),
+                  ], MediaQuery.of(context).size.width * 0.80, 150, 20, 100,
+                      230, 230, 230),
                 ),
-              ),
-              alignment: Alignment.centerLeft,
-              height: 60,
-              child: Text(
-                "Anúncios recentes",
-                style: TextStyle(
-                    color: Colors.blue,
-                    fontSize: 30.0,
-                    fontWeight: FontWeight.bold),
-              ),
+                // Title - Anúncios recentes
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                        width: 10, color: Color.fromARGB(0, 0, 0, 0)),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(30.0),
+                    ),
+                  ),
+                  alignment: Alignment.centerLeft,
+                  height: MediaQuery.of(context).size.height * 0.1,
+                  child: Text(
+                    "Anúncios recentes",
+                    style: TextStyle(
+                        color: Colors.blue,
+                        fontSize: 30.0,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+                //List of advertises
+                Container(
+                  height: MediaQuery.of(context).size.height,
+                  width: MediaQuery.of(context).size.width,
+                  child: FutureBuilder(
+                      future: CardAdvertise("a", "b", "c", "d")
+                          .loadData('http://192.168.3.7:3000/anuncio/busca/5'),
+                      builder: (context,
+                          AsyncSnapshot<List<CardAdvertise>> snapshot) {
+                        if (snapshot.connectionState == ConnectionState.done) {
+                          return Column(
+                            children: snapshot.data!
+                                .map((e) => Card(child: e))
+                                .toList(),
+                          );
+                        } else
+                          return Text('erro');
+                      }),
+                ),
+              ],
             ),
-            //List of advertises
-            Container(
-              height: 200,
-              width: MediaQuery.of(context).size.width,
-              child: FutureBuilder(
-                  future: CardAdvertise("a", "b", "c", "d").requsicaoBanco(
-                      'http://192.168.3.7:3000/anuncio/busca/5'),
-                  builder:
-                      (context, AsyncSnapshot<List<CardAdvertise>> snapshot) {
-                    if (snapshot.connectionState == ConnectionState.done) {
-                      return ListView.builder(
-                          itemCount: snapshot.data!.length,
-                          itemBuilder: (BuildContext ctxt, int index) {
-                            return snapshot.data![index];
-                          });
-                    } else
-                      return Text('erro');
-                  }),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
       //NavBar
       bottomNavigationBar: BottomNavigationBar(
