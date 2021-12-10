@@ -40,12 +40,14 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //AppBar
       appBar: AppBar(
         title: Padding(
           padding: const EdgeInsets.all(100.0),
           child: Image.asset("assets/images/Logo.png"),
         ),
       ),
+      //Body
       body: Container(
         child: Column(
           children: [
@@ -101,6 +103,7 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
+      //NavBar
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 0,
         items: [
