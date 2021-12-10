@@ -4,6 +4,8 @@ import 'package:capo_mobile/models/card_advertise.dart';
 import 'package:capo_mobile/models/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -23,6 +25,18 @@ class _HomePageState extends State<HomePage> {
     CardAdvertise('modelo7', 'quilometragem', 'preco', 'localizacao'),
   ];
 
+  List dados = [];
+
+  Future<List> requsicaoBanco(String url) async {
+    try {
+      final response = await http.get(Uri.parse(url));
+      dados = jsonDecode(response.body);
+      return dados;
+    } catch (error) {
+      throw Exception(error);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,10 +48,24 @@ class _HomePageState extends State<HomePage> {
       ),
       body: ListView(
         children: [
-          Container(
-            height: MediaQuery.of(context).size.height * 0.3,
-            width: MediaQuery.of(context).size.width,
-            child: CarousellSlider(),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Container(
+                height: MediaQuery.of(context).size.height * 0.3,
+                width: MediaQuery.of(context).size.width,
+                child: CarousellSlider(
+                    ["assets/brands/Chevrolet.png", "assets/brands/Fiat.png"],
+                    double.infinity * 0.80,
+                    100,
+                    100,
+                    230,
+                    230,
+                    230),
+              ),
+            ],
           ),
           Container(
             height: MediaQuery.of(context).size.height * 0.7,

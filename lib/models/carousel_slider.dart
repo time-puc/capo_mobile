@@ -2,55 +2,35 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 class CarousellSlider extends StatelessWidget {
+  List<String> images = [];
+  double width = 0, height = 0;
+  int a = 0, r = 0, g = 0, b = 0;
+
+  CarousellSlider(List<String> this.images, double this.width,
+      double this.height, int this.a, int this.r, int this.g, int this.b);
+
   @override
   Widget build(BuildContext context) {
     return CarouselSlider(
-      items: [
-        Container(
-          child: Image.asset('assets/brands/Chevrolet.png'),
-          width: MediaQuery.of(context).size.width * 0.80,
-          decoration: BoxDecoration(
-            color: Color.fromARGB(100, 230, 230, 230),
-            borderRadius: BorderRadius.all(
-              Radius.circular(30.0),
+      items: images
+          .map(
+            (e) => Container(
+              child: Image.asset(e),
+              width: width,
+              decoration: BoxDecoration(
+                color: Color.fromARGB(a, r, g, b),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(30.0),
+                ),
+              ),
             ),
-          ),
-        ),
-        Container(
-          child: Image.asset('assets/brands/Fiat.png'),
-          width: MediaQuery.of(context).size.width * 0.80,
-          decoration: BoxDecoration(
-            color: Color.fromARGB(100, 230, 230, 230),
-            borderRadius: BorderRadius.all(
-              Radius.circular(30.0),
-            ),
-          ),
-        ),
-        Container(
-          child: Image.asset('assets/brands/Ford.png'),
-          width: MediaQuery.of(context).size.width * 0.80,
-          decoration: BoxDecoration(
-            color: Color.fromARGB(100, 230, 230, 230),
-            borderRadius: BorderRadius.all(
-              Radius.circular(30.0),
-            ),
-          ),
-        ),
-        Container(
-          child: Image.asset('assets/brands/Volkswagen.png'),
-          width: MediaQuery.of(context).size.width * 0.80,
-          decoration: BoxDecoration(
-            color: Color.fromARGB(100, 230, 230, 230),
-            borderRadius: BorderRadius.all(
-              Radius.circular(30.0),
-            ),
-          ),
-        ),
-      ],
+          )
+          .toList(),
 
       //Slider Container properties
       options: CarouselOptions(
         autoPlay: true,
+        height: height,
       ),
     );
   }
