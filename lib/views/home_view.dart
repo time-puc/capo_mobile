@@ -56,14 +56,12 @@ class _HomePageState extends State<HomePage> {
               Container(
                 height: MediaQuery.of(context).size.height * 0.3,
                 width: MediaQuery.of(context).size.width,
-                child: CarousellSlider(
-                    ["assets/brands/Chevrolet.png", "assets/brands/Fiat.png"],
-                    double.infinity * 0.80,
-                    100,
-                    100,
-                    230,
-                    230,
-                    230),
+                child: CarousellSlider([
+                  "assets/brands/Chevrolet.png",
+                  "assets/brands/Fiat.png",
+                  "assets/brands/Ford.png",
+                  "assets/brands/Volkswagen.png"
+                ], double.infinity * 0.80, 150, 20, 100, 230, 230, 230),
               ),
             ],
           ),
