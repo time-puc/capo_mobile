@@ -4,8 +4,6 @@ import 'package:capo_mobile/models/card_advertise.dart';
 import 'package:capo_mobile/models/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -15,28 +13,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<CardAdvertise> lista_anuncios = [
-    CardAdvertise('modelo1', 'quilometragem', 'preco', 'localizacao'),
-    CardAdvertise('modelo2', 'quilometragem', 'preco', 'localizacao'),
-    CardAdvertise('modelo3', 'quilometragem', 'preco', 'localizacao'),
-    CardAdvertise('modelo4', 'quilometragem', 'preco', 'localizacao'),
-    CardAdvertise('modelo5', 'quilometragem', 'preco', 'localizacao'),
-    CardAdvertise('modelo6', 'quilometragem', 'preco', 'localizacao'),
-    CardAdvertise('modelo7', 'quilometragem', 'preco', 'localizacao'),
-  ];
-
-  List dados = [];
-
-  Future<List> requsicaoBanco(String url) async {
-    try {
-      final response = await http.get(Uri.parse(url));
-      dados = jsonDecode(response.body);
-      return dados;
-    } catch (error) {
-      throw Exception(error);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -99,6 +75,25 @@ class _HomePageState extends State<HomePage> {
                     fontSize: 30.0,
                     fontWeight: FontWeight.bold),
               ),
+            ),
+            //List of advertises
+            Container(
+              height: 200,
+              width: MediaQuery.of(context).size.width,
+              child: FutureBuilder(
+                  future: CardAdvertise("a", "b", "c", "d").requsicaoBanco(
+                      'http://192.168.3.7:3000/anuncio/busca/5'),
+                  builder:
+                      (context, AsyncSnapshot<List<CardAdvertise>> snapshot) {
+                    if (snapshot.connectionState == ConnectionState.done) {
+                      return ListView.builder(
+                          itemCount: snapshot.data!.length,
+                          itemBuilder: (BuildContext ctxt, int index) {
+                            return snapshot.data![index];
+                          });
+                    } else
+                      return Text('erro');
+                  }),
             ),
           ],
         ),
