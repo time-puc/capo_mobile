@@ -1,3 +1,4 @@
+import 'package:capo_mobile/views/home_view.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -13,8 +14,8 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: SingleChildScrollView(
+    return Scaffold(
+      body: SingleChildScrollView(
         child: SizedBox(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
@@ -45,7 +46,8 @@ class _LoginPageState extends State<LoginPage> {
                   onPressed: () {
                     if (email == 'bruno.as4@puccampinas.edu.br' &&
                         password == '123') {
-                      print('correto');
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => HomePage()));
                     }
                   },
                   child: Text('Entrar'),
