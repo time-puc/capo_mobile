@@ -24,6 +24,10 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                Container(
+                    width: 250,
+                    height: 100,
+                    child: Image.asset("assets/images/logoHome.png")),
                 TextField(
                   onChanged: (text) {
                     email = text;
@@ -43,6 +47,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 SizedBox(height: 10),
                 RaisedButton(
+                  color: Colors.blue,
                   onPressed: () {
                     if (email == 'bruno.as4@puccampinas.edu.br' &&
                         password == '123') {
