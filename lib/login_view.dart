@@ -20,10 +20,21 @@ class _LoginPageState extends State<LoginPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               TextField(
+                keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
-                  border: OutlineInputBorder()
-                ),
+                    labelText: 'E-mail', border: OutlineInputBorder()),
               ),
+              SizedBox(height: 10),
+              TextField(
+                obscureText: true,
+                decoration: InputDecoration(
+                    labelText: 'Senha', border: OutlineInputBorder()),
+              ),
+              SizedBox(height: 10),
+              RaisedButton(
+                onPressed: () {},
+                child: Text('Entrar'),
+              )
             ],
           ),
         ),
