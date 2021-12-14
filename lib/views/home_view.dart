@@ -19,8 +19,8 @@ class _HomePageState extends State<HomePage> {
       //AppBar
       appBar: AppBar(
         title: Padding(
-          padding: const EdgeInsets.all(100.0),
-          child: Image.asset("assets/images/Logo.png"),
+          padding: const EdgeInsets.all(50.0),
+          child: Image.asset("assets/images/Logo.png",)
         ),
       ),
       //Body
@@ -84,7 +84,7 @@ class _HomePageState extends State<HomePage> {
                   width: MediaQuery.of(context).size.width,
                   child: FutureBuilder(
                       future: CardAdvertise("a", "b", "c", "d")
-                          .loadData('http://192.168.3.7:3000/anuncio/busca/5'),
+                          .loadData('http://192.168.100.88:3000/anuncio/busca/4'),
                       builder: (context,
                           AsyncSnapshot<List<CardAdvertise>> snapshot) {
                         if (snapshot.connectionState == ConnectionState.done) {

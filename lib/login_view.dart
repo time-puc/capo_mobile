@@ -49,10 +49,9 @@ class _LoginPageState extends State<LoginPage> {
                 RaisedButton(
                   color: Colors.blue,
                   onPressed: () {
-                    if (email == 'bruno.as4@puccampinas.edu.br' &&
-                        password == '123') {
-                      Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => HomePage()));
+                    if (email == 'renatoalvim666@gmail.com' &&
+                        password == '12345') {
+                      Navigator.of(context).pushReplacementNamed('/home');
                     }
                   },
                   child: Text('Entrar'),
